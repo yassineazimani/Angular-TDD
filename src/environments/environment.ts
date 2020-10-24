@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   endpointAuthors: 'https://jsonplaceholder.typicode.com/users',
+  endpointPosts: 'https://jsonplaceholder.typicode.com/posts',
 };
 
 /*

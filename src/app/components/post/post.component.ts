@@ -18,7 +18,6 @@ export class PostComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  console.log(this.content);
-  }
+  }// ngOnInit()
 
-}
+}// PostComponent

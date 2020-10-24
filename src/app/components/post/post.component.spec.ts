@@ -26,7 +26,7 @@ describe('PostComponent', () => {
   it('should display title Test when argument component title is Test', () => {
     component.title = 'Test';
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Test');
+    expect(fixture.nativeElement.querySelector('h2').innerText).toBe('Test');
   });
 
   it('should display content ut aspernatur corporis harum nihil quis provident when argument component content is ut aspernatur corporis harum nihil quis provident', () => {
@@ -38,7 +38,7 @@ describe('PostComponent', () => {
   it('should display By Harry Potter when argument component author is Harry Potter', () => {
      component.author = 'Harry Potter';
      fixture.detectChanges();
-     expect(fixture.nativeElement.querySelector('#author').innerText).toBe('Harry Potter');
+     expect(fixture.nativeElement.querySelector('.author').innerText).toBe('Harry Potter');
   });
 
   it('should use class red when argument component color is red', () => {

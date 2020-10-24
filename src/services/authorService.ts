@@ -5,9 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Author from '../domain/author';
 import { environment } from '../environments/environment';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({providedIn: 'root'})
 export class AuthorService{
 
   constructor(private http: HttpClient){

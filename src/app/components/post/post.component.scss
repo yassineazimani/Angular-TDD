@@ -1,4 +1,15 @@
 .post{
+  border-radius: 8px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  h2, p{
+    text-align: center;
+  }
+  h2{
+    text-transform: capitalize;
+  }
   &.content-red{
     background-color: #f8d7da;
     border-color: #f5c6cb;

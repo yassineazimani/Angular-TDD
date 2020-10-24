@@ -1,0 +1,1 @@
+<app-post *ngFor="let post of posts" [title]="post.title" [content]="post.body" [author]="getAuthorNameById(post.id)" [color]="getColorByPostId(post.id)"></app-post>
