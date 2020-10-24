@@ -3,6 +3,7 @@ import { filter, map } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Author from '../domain/author';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class AuthorService{
    * @return Observable<Author[]>
    */
   findAll(): Observable<Author[]> {
-    return this.http.get<any>('')
+    return this.http.get<any>(environment.endpointAuthors)
                     .pipe(
                       map<any, Author[]>(data => data.map(author => new Author(author.id, author.name, author.username))),
                     );
@@ -29,7 +30,7 @@ export class AuthorService{
    * @return Observable<Author>
    */
   findById(id: Number): Observable<Author> {
-    return this.http.get<any>('')
+    return this.http.get<any>(environment.endpointAuthors)
                       .pipe(
                         filter((author: any) => author.id === id),
                         map<any, Author>(data => data.map(author => new Author(author.id, author.name, author.username))),
