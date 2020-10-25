@@ -36,8 +36,8 @@ describe('SearchpostComponent', () => {
     expect(fixture.nativeElement.querySelector('label[for="searchByContent"]').innerHtml).not.toBeNull();
   });
 
-  it('Label for input search by title or content should be Rechercher par titre :', () => {
-    expect(fixture.nativeElement.querySelector('label[for="searchByContent"]').innerText).toBe('Rechercher par titre :');
+  it('Label for input search by title or content should be Rechercher par titre/contenu :', () => {
+    expect(fixture.nativeElement.querySelector('label[for="searchByContent"]').innerText).toBe('Rechercher par titre/contenu :');
   });
 
   it('should display a select to search by author with id searchByAuthor', () => {

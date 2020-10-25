@@ -1,5 +1,4 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { PostService } from '../../../services/postService';
 import { AuthorService } from '../../../services/authorService';
 import Post from '../../../domain/post';
@@ -30,25 +29,28 @@ export class PostsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.postService.findAll()
-      .subscribe((posts) => {
-        this.posts = posts;
-        this.colors = posts.map(post => ({ id: post.id, color: this.generateRandomColor() }));
+      .subscribe({ 
+        next: (posts) => {
+          this.posts = posts;
+          this.colors = posts.map(post => ({ id: post.id, color: this.generateRandomColor() }));
+        },
+        error: (errors) => console.error(errors)
       });
     this.authorService.findAll()
-          .subscribe(authors => this.authors = authors);
+          .subscribe({ next: authors => this.authors = authors, error: errors => console.error(errors) });
   }// ngOnInit()
 
   ngOnChanges(changes: SimpleChanges): void{
-    this.postService.findAll()
-          .subscribe((posts) => {
-            this.posts = this.authorSelected && typeof this.authorSelected !== 'string' ?
-                            posts.filter(post => post.userId === this.authorSelected.id) : posts;
-            if(changes.contentToSearch && this.contentToSearch){
-              console.log(this.posts.filter(post => post.title.includes(this.contentToSearch) || post.body.includes(this.contentToSearch)));
-              this.posts = this.posts.filter(post => post.title.includes(this.contentToSearch) || post.body.includes(this.contentToSearch));
-            }
-            this.colors = posts.map(post => ({ id: post.id, color: this.generateRandomColor() }));
-          });
+    this.postService.findAll(this.contentToSearch)
+          .subscribe({
+            next:
+              (posts) => {
+              this.posts = this.authorSelected && typeof this.authorSelected !== 'string' ?
+                              posts.filter(post => post.userId === this.authorSelected.id) : posts;
+              this.colors = posts.map(post => ({ id: post.id, color: this.generateRandomColor() }));
+            },
+            error: errors => console.error(errors)
+        });
   }// ngOnChanges()
 
   getAuthorNameById(userId: Number): string {
