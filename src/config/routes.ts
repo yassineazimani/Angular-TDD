@@ -1,4 +1,4 @@
 import { Routes } from '@angular/router';
-import { PostsComponent } from '../app/components/posts/posts.component';
+import { PagepostComponent } from '../app/components/pagepost/pagepost.component';
 
-export const routes: Routes = [{ path: '', component: PostsComponent }];
+export const routes: Routes = [{ path: '', component: PagepostComponent }];

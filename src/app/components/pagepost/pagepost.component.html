@@ -1,0 +1,4 @@
+<main>
+  <app-searchpost (authorEvent)="setAuthorToFilter($event)" (contentEvent)="setContentToSearch($event)"></app-searchpost>
+  <app-posts [authorSelected]="authorSelected" [contentToSearch]="contentToSearch"></app-posts>
+</main>

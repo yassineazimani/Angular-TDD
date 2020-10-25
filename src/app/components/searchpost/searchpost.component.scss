@@ -1,0 +1,11 @@
+form{
+  width: 40%;
+  margin: 0 auto;
+  .form-group{
+    margin-bottom: 15px;
+    label{
+      display: inline-block;
+      width: 250px;
+    }
+  }
+}

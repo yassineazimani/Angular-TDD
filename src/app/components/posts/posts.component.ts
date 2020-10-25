@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostService } from '../../../services/postService';
 import { AuthorService } from '../../../services/authorService';
@@ -10,13 +10,17 @@ import Author from '../../../domain/author';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnChanges {
 
   posts: Post[];
 
   authors: Author[];
 
   colors: any;
+
+  @Input() authorSelected: Author;
+
+  @Input() contentToSearch: string;
 
   constructor(private postService: PostService, private authorService: AuthorService) {
     this.posts = [];
@@ -32,8 +36,20 @@ export class PostsComponent implements OnInit {
       });
     this.authorService.findAll()
           .subscribe(authors => this.authors = authors);
-
   }// ngOnInit()
+
+  ngOnChanges(changes: SimpleChanges): void{
+    this.postService.findAll()
+          .subscribe((posts) => {
+            this.posts = this.authorSelected && typeof this.authorSelected !== 'string' ?
+                            posts.filter(post => post.userId === this.authorSelected.id) : posts;
+            if(changes.contentToSearch && this.contentToSearch){
+              console.log(this.posts.filter(post => post.title.includes(this.contentToSearch) || post.body.includes(this.contentToSearch)));
+              this.posts = this.posts.filter(post => post.title.includes(this.contentToSearch) || post.body.includes(this.contentToSearch));
+            }
+            this.colors = posts.map(post => ({ id: post.id, color: this.generateRandomColor() }));
+          });
+  }// ngOnChanges()
 
   getAuthorNameById(userId: Number): string {
     const author = this.authors.find(author => author.id === userId);
