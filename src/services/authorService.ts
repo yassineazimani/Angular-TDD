@@ -1,7 +1,7 @@
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import Author from '../domain/author';
 import { environment } from '../environments/environment';
 
@@ -15,7 +15,7 @@ export class AuthorService{
    * Récupère la totalité des auteurs.
    * @return Observable<Author[]>
    */
-  findAll(): Observable<Author[]> {
+  findAll = (): Observable<Author[]> => {
     return this.http.get<any>(environment.endpointAuthors)
                     .pipe(
                       map<any, Author[]>(data => data.map(author => new Author(author.id, author.name, author.username))),
@@ -27,7 +27,7 @@ export class AuthorService{
    * @param id: Identifiant de l'auteur à récupérer
    * @return Observable<Author>
    */
-  findById(id: Number): Observable<Author> {
+  findById = (id: Number): Observable<Author> => {
     return this.http.get<any>(environment.endpointAuthors)
                       .pipe(
                         filter((author: any) => author.id === id),

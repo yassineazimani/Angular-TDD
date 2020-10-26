@@ -1,6 +1,6 @@
 import Post from '../../domain/post';
 
-export const postsFromBackEnd: Object[] = [
+export const postsFromBackEnd = (): Post[] => [
   {
     userId: 1,
     id: 1,
@@ -15,7 +15,7 @@ export const postsFromBackEnd: Object[] = [
   }
 ];
 
-export const posts: Post[] = [
+export const posts = (): Post[] => [
   {
     userId: 1,
     id: 1,

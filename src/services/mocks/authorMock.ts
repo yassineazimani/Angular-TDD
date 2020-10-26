@@ -1,6 +1,6 @@
 import Author from '../../domain/author';
 
-export const authorsFromBackEnd: Object[] = [
+export const authorsFromBackEnd = () : Object[] => [
   {
     id: 1,
     name: "Leanne Graham",
@@ -49,7 +49,7 @@ export const authorsFromBackEnd: Object[] = [
   }
 ];
 
-export const authors: Author[] = [
+export const authors = (): Author[] => [
   {
       id: 1,
       name: "Leanne Graham",

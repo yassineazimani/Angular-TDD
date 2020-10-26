@@ -35,7 +35,7 @@ describe('Post service tests', () => {
 
   it('findAll should return post with title facere when argument given is facere', () => {
     spyOn(HttpClientFake, 'get').and.returnValue(of(postsFromBackEnd));
-    const posts$ = postService.findAll('facere');
+    const posts$ = postService.findAll(null, 'facere');
     expect(posts$).toBeDefined();
     expect(posts$).not.toBeNull();
     posts$.subscribe((posts) => {
@@ -49,7 +49,7 @@ describe('Post service tests', () => {
 
   it('findAll should return post with body tempore when argument given is tempore', () => {
     spyOn(HttpClientFake, 'get').and.returnValue(of(postsFromBackEnd));
-    const posts$ = postService.findAll('tempore');
+    const posts$ = postService.findAll(null, 'tempore');
     expect(posts$).toBeDefined();
     expect(posts$).not.toBeNull();
     posts$.subscribe((posts) => {

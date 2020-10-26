@@ -41,12 +41,12 @@ export class PostsComponent implements OnInit, OnChanges {
   }// ngOnInit()
 
   ngOnChanges(changes: SimpleChanges): void{
-    this.postService.findAll(this.contentToSearch)
+    const authorIdSelected: Number = this.authorSelected && typeof this.authorSelected !== 'string' ? this.authorSelected.id : null;
+    this.postService.findAll(authorIdSelected, this.contentToSearch)
           .subscribe({
             next:
               (posts) => {
-              this.posts = this.authorSelected && typeof this.authorSelected !== 'string' ?
-                              posts.filter(post => post.userId === this.authorSelected.id) : posts;
+              this.posts = posts;
               this.colors = posts.map(post => ({ id: post.id, color: this.generateRandomColor() }));
             },
             error: errors => console.error(errors)
